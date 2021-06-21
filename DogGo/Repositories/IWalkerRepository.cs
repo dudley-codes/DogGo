@@ -8,9 +8,5 @@ namespace DogGo.Repositories
     {
         List<Walker> GetAllWalkers();
         Walker GetWalkerById(int id);
-
-
     }
-
-
 }
