@@ -81,7 +81,8 @@ namespace DogGo.Repositories
                                         o.Name,
                                         o.Address,
                                         o.Phone,
-                                        n.Name AS Neighborhood
+                                        n.Name AS Neighborhood,
+                                        o.NeighborhoodId
                                         from Owner o
                                         join Neighborhood n on o.NeighborhoodId = n.Id
                                         WHERE o.Id = @id";
@@ -101,7 +102,8 @@ namespace DogGo.Repositories
                             Neighborhood = new Neighborhood()
                             {
                                 Name = reader.GetString(reader.GetOrdinal("Neighborhood"))
-                            }
+                            },
+                            NeighborhoodId = reader.GetInt32(reader.GetOrdinal("NeighborhoodId"))
                         };
 
                         reader.Close();
