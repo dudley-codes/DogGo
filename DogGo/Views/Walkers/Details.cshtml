@@ -1,43 +1,69 @@
-﻿@model DogGo.Models.Walker
+﻿@model DogGo.Models.WalkerViewModel
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
 
-<div>
-    <h4>Walker</h4>
+<div class="profile">
+    <h1>Walker Profile</h1>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Id)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Id)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Neighborhood)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Neighborhood.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </dt>
-        <dd class="col-sm-10">
-            <img class="bg-info" src="@Model.ImageUrl" alt="avatar" />
+    <section class="container">
 
-        </dd>
-    </dl>
+        <img style="width:100px;float:left;margin-right:20px"
+             class="bg-info" src="@Model.Walker.ImageUrl" alt="avatar" />
+        <div>
+            <label class="font-weight-bold">Name:</label>
+            <span>  @Html.DisplayFor(model => model.Walker.Name)</span>
+        </div>
+        <div>
+            <label class="font-weight-bold">Neighborhood:</label>
+            @Html.DisplayFor(model => model.Walker.Neighborhood.Name)
+        </div>
+    </section>
+
 </div>
 <div>
     @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
     <a asp-action="Index">Back to List</a>
 </div>
+<hr class="mt-5" />
+<div class="row">
+    <section class="col-8 container mt-5">
+        <h1 class="text-left">Recent Walks</h1>
+        <div class="row">
+
+            <div class="column">
+                <label class="font-weight-bold">Date:</label>
+                @foreach (Walk walk in Model.Walks)
+                {
+                    <div>
+                        <span>@walk.Date </span>
+                    </div>
+                }
+            </div>
+            <hr class="mt-5" />
+
+            <div class="column">
+                <label class="font-weight-bold">Owner:</label>
+                @foreach (Walk walk in Model.Walks)
+                {
+                    <div>
+                        <span>@walk.Owner.Name </span>
+                    </div>
+                }
+            </div>
+            <hr class="mt-5" />
+            <div class="column">
+                <label class="font-weight-bold">Duration:</label>
+                @foreach (Walk walk in Model.Walks)
+                {
+                    <div>
+                        <span>@walk.Duration min</span>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</div>
+
