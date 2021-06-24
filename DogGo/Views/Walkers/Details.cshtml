@@ -31,9 +31,9 @@
 <div class="row">
     <section class="col-8 container mt-5">
         <h1 class="text-left">Recent Walks</h1>
-        <div class="row">
+        <div class="row gx-5">
 
-            <div class="column">
+            <div class="p-1">
                 <label class="font-weight-bold">Date:</label>
                 @foreach (Walk walk in Model.Walks)
                 {
@@ -42,9 +42,8 @@
                     </div>
                 }
             </div>
-            <hr class="mt-5" />
 
-            <div class="column">
+            <div class="p-1">
                 <label class="font-weight-bold">Owner:</label>
                 @foreach (Walk walk in Model.Walks)
                 {
@@ -53,8 +52,7 @@
                     </div>
                 }
             </div>
-            <hr class="mt-5" />
-            <div class="column">
+            <div class="p-1">
                 <label class="font-weight-bold">Duration:</label>
                 @foreach (Walk walk in Model.Walks)
                 {
@@ -63,6 +61,11 @@
                     </div>
                 }
             </div>
+        </div>
+        <div>
+            <span>Total Walk Duration: </span>
+            <span>@Model.Walks.Sum(w => TimeSpan.FromMinutes(Convert.ToInt32(w.Duration)).Hours)h</span>
+            <span>@Model.Walks.Sum(w => TimeSpan.FromMinutes(Convert.ToInt32(w.Duration)).Minutes)m</span>
         </div>
     </section>
 </div>

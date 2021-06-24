@@ -58,20 +58,25 @@ namespace DogGo.Repositories
                             Duration = Convert.ToInt32(TimeSpan.FromSeconds(reader.GetInt32(reader.GetOrdinal("Duration"))).TotalMinutes),
                             DogId = reader.GetInt32(reader.GetOrdinal("DogId")),
                             WalkerId = reader.GetInt32(reader.GetOrdinal("WalkerId")),
-                            Owner = new Owner 
+                            Owner = new Owner
                             {
                                 Name = reader.GetString(reader.GetOrdinal("OwnerName"))
                             }
+
                         };
 
                         walks.Add(walk);
                     }
                     reader.Close();
+                    int TotalHours = walks.Sum(w => TimeSpan.FromMinutes(Convert.ToInt32(w.Duration)).Hours);
+                    int TotalMinutes = walks.Sum(w => TimeSpan.FromMinutes(Convert.ToInt32(w.Duration)).Minutes);
+                    walks.Add(TotalHours);
+                    walks.Add(TotalMinutes);
                     return walks;
                 }
             }
         }
     }
-    }
+}
 
 
