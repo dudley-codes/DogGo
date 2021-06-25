@@ -70,8 +70,8 @@ namespace DogGo.Repositories
                     reader.Close();
                     int TotalHours = walks.Sum(w => TimeSpan.FromMinutes(Convert.ToInt32(w.Duration)).Hours);
                     int TotalMinutes = walks.Sum(w => TimeSpan.FromMinutes(Convert.ToInt32(w.Duration)).Minutes);
-                    walks.Add(TotalHours);
-                    walks.Add(TotalMinutes);
+                    //walks.Add(TotalHours);
+                    //walks.Add(TotalMinutes);
                     return walks;
                 }
             }
